@@ -1,4 +1,4 @@
-# User data for ECs, in Terraform
+# cloudinit_config user-data for EC2s, in Terraform
 
 ### Where is the user data file stored on an E2?
 `/var/lib/cloud/instances/[instance-id]/user-data.txt`
@@ -9,7 +9,7 @@
 
 `less /var/log/cloud-init-output.log`
 
-### See:
+### See the docs:
 * [cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
 
 * [cloud config examples](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#yaml-examples)
@@ -18,10 +18,24 @@
 * [good blog post re: cloud init and terraform](https://sammeechward.com/cloud-init-and-terraform-with-aws/)
 * [another blog post that was really useful in understanding this pattern](https://www.puppeteers.net/blog/multi-part-cloud-init-provisioning-with-terraform/)
 
-### don't forget:
+### Gotchas:
 * The first line #cloud-config is needed to tell the cloud-init program that this is a cloud-config file.
  ` #cloud-config`
 * Don't write files to /tmp from cloud-init use /run/somedir instead. (because of race conditions) 
+
+### Boot stages
+There are five stages to boot:
+
+1. Generator
+
+2. Local
+
+3. Network
+
+4. Config 
+    - runcmd 
+
+5. Final
 
 ### You must include a merge-type header if you are using multi-part MIME
 This is a way to specify how cloud-config YAML (user-data) are merged together when there are multiple YAML file. Previously the merging algorithm was very simple and would only overwrite and not append lists, or strings. There are a few different ways to do this, in the example below we're including merge-type header for every cloud-config YAML file.   
