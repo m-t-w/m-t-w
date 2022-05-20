@@ -3,7 +3,7 @@
 ### Where is the user data file stored on an E2?
 `/var/lib/cloud/instances/[instance-id]/user-data.txt`
 
-### Where are the logs from the cloud_config set up step?
+### Where are the logs from the cloud_config cloud init?
 
 `less /var/log/cloud-init.log`
 
@@ -12,11 +12,11 @@
 ### See:
 * [cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
 
-* [cloud config examples] (https://cloudinit.readthedocs.io/en/latest/topics/examples.html#yaml-examples)
+* [cloud config examples](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#yaml-examples)
 
-* [terraform doc re: cloud config] (https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/cloudinit_config)
-* [good blog post re: cloud init and terraform] (https://sammeechward.com/cloud-init-and-terraform-with-aws/)
-* [another blog post that was really useful in understanding this pattern] (https://www.puppeteers.net/blog/multi-part-cloud-init-provisioning-with-terraform/)
+* [terraform doc re: cloud config](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/cloudinit_config)
+* [good blog post re: cloud init and terraform](https://sammeechward.com/cloud-init-and-terraform-with-aws/)
+* [another blog post that was really useful in understanding this pattern](https://www.puppeteers.net/blog/multi-part-cloud-init-provisioning-with-terraform/)
 
 ### don't forget:
 * The first line #cloud-config is needed to tell the cloud-init program that this is a cloud-config file.
@@ -39,4 +39,4 @@ runcmd:
   - curl -LOs https://s3.amazonaws.com/donorschoose-docker-assets/atlassian-bamboo-agent-installer-${bamboo_version}.jar
   - popd 
   ```
-  [merge types docs] (https://cloudinit.readthedocs.io/en/latest/topics/merging.html)
+  [merge types docs](https://cloudinit.readthedocs.io/en/latest/topics/merging.html)
