@@ -1,4 +1,4 @@
-# Provisioning with cloudinit_config user-data for EC2s, in Terraform
+# Provisioning EC2s with cloudinit_config user-data and Terraform
 
 
 
