@@ -35,10 +35,11 @@ merge_how:
    settings: [no_replace, recurse_list]
 runcmd:
   - echo
-  - echo "*** Install bamboo-agent jar" # Install jar
-  - pushd /usr/local/bin
-  - curl -LOs https://s3.amazonaws.com/donorschoose-docker-assets/atlassian-bamboo-agent-installer-${bamboo_version}.jar
-  - popd 
+  - echo "*** Schedule Docker Cleanup"
+  - echo "--- Set up 4 am docker system prune job"
+  - touch /var/log/docker-prune.out
+  - chown ec2-user:ec2-user /var/log/docker-prune.out
+  - echo
   ```
   
 ### Bring it all together in one cloudinit_config data source, for use with cloudinit
