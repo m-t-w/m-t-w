@@ -1,5 +1,5 @@
 # Provisioning EC2s with cloudinit_config user-data and Terraform
-What is cloud init? [See: The Cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
+What is cloud init? [See: the Cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
 
 ### For each file to be used for cloud_init, create a terraform templatefile
 This is a terraform data source, called a [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file). This will allow us to pass in variables from terraform.
@@ -25,7 +25,7 @@ User data can come is several formats - the format I'm using here is cloud-confi
 * Don't write files to /tmp from cloud-init use /run/somedir instead. (because of race conditions) 
 
 #### You must include a merge-type header if you are using multi-part MIME
-This is a way to specify how cloud-config YAML (user-data) are merged together when there are multiple YAML file. Previously the merging algorithm was very simple and would only overwrite and not append lists, or strings. There are a few different ways to do this, in the example below we're including merge-type header for every cloud-config YAML file.   [(see: merge-types docs)](https://cloudinit.readthedocs.io/en/latest/topics/merging.html)
+This is a way to specify how cloud-config YAML (user-data) are merged together when there are multiple YAML files. Previously the merging algorithm was very simple and would only overwrite and not append lists, or strings. There are a few different ways to do this, in the example below we're including merge-type header for every cloud-config YAML file.   [(see: merge-types docs)](https://cloudinit.readthedocs.io/en/latest/topics/merging.html)
 ```
 #cloud-config
 merge_how:
