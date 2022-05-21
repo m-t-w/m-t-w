@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Provisioning with cloudinit and terraform"
-permalink: /cloudinit
+permalink: /cloudinit/
 ---
 
 
