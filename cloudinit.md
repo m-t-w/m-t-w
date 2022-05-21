@@ -1,8 +1,7 @@
----
 layout: page
 title: "Provisioning with cloudinit and terraform"
 permalink: /cloudinit/
----
+
 
 # Provisioning EC2s with cloudinit_config user-data and Terraform
 
