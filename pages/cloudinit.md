@@ -7,12 +7,12 @@ permalink: /cloudinit-config/
 
 # Provisioning EC2s with cloudinit_config user-data and Terraform
 
-### What is cloud init? [See: the Cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
+* What is cloud init? [See: the Cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
 
 
 ---
 
-### For each file to be used for cloud_init, create a terraform templatefile
+## For each file to be used for cloud_init, create a terraform templatefile
 This is a terraform data source, called a [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file). This will allow us to pass in variables from terraform.
 Note: the data-source declaration here does not have access to variables already defined in variables.tf (or elsewhere) - you have to pass them in. 
 
@@ -27,15 +27,15 @@ data "template_file" "install_programs" {
 }
 ```
 
-### Each yaml file should conform to the cloud-config yaml syntax
+## Each yaml file should conform to the cloud-config yaml syntax
 User data can come is several formats - the format I'm using here is cloud-config syntax.  Here is the [module reference.](https://cloudinit.readthedocs.io/en/latest/topics/modules.html) 
 
-#### Gotchas:
+### Gotchas:
 * The first line #cloud-config is needed to tell the cloud-init program that this is a cloud-config file.
  ` #cloud-config`
 * Don't write files to /tmp from cloud-init use /run/somedir instead. (because of race conditions) 
 
-#### You must include a merge-type header if you are using multi-part MIME
+### You must include a merge-type header if you are using multi-part MIME
 This is a way to specify how cloud-config YAML (user-data) are merged together when there are multiple YAML files. Previously the merging algorithm was very simple and would only overwrite and not append lists, or strings. There are a few different ways to do this, in the example below we're including merge-type header for every cloud-config YAML file.   [(see: merge-types docs)](https://cloudinit.readthedocs.io/en/latest/topics/merging.html)
 ```
 #cloud-config
@@ -53,7 +53,7 @@ runcmd:
   - echo
   ```
   
-### Bring it all together in one cloudinit_config data source, for use with cloudinit
+## Bring it all together in one cloudinit_config data source, for use with cloudinit
  [See: Terraform cloud_config data source](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/cloudinit_config)
 ```
 # Bringing it all together into a single, multi-part cloud-init configuration
@@ -71,17 +71,17 @@ data "cloudinit_config" "user_data" {
 }
 ```
   
-### Troubleshooting
-#### Where is the user data file stored on an E2?
+## Troubleshooting
+### Where is the user data file stored on an E2?
 `/var/lib/cloud/instances/[instance-id]/user-data.txt`
 
-#### Where are the logs from the cloud_config cloud init?
+### Where are the logs from the cloud_config cloud init?
 
 `less /var/log/cloud-init.log`
 
 `less /var/log/cloud-init-output.log`
 
-#### Boot stages
+### Boot stages
 There are five stages to boot:
 1. Generator 
     - determines whether cloud-init should run during boot
@@ -103,7 +103,7 @@ There are five stages to boot:
 Info from [here](https://git.launchpad.net/cloud-init/tree/config/cloud.cfg.tmpl) and [here](https://stackoverflow.com/questions/34095839/cloud-init-what-is-the-execution-order-of-cloud-config-directives)
 
 
-#### Helpful docs:
+### Helpful docs:
 * [The Cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
 * [Cloud init: cloud config examples](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#yaml-examples)
 * [Terraform docs re: the cloud_config data source](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/cloudinit_config)
