@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Provisioning with cloudinit and terraform"
+title: Provisioning with Cloudinit and Terraform
 permalink: /cloudinit/
 ---
 
