@@ -1,7 +1,7 @@
 ---
-layout: page
-title: Provisioning with Cloudinit and Terraform
-permalink: /cloudinit/
+layout: default
+overview: true
+permalink: /cloudinit-config/
 ---
 
 
