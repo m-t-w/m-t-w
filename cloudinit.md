@@ -3,7 +3,10 @@ title: "Provisioning with cloudinit and terraform"
 permalink: /cloudinit/
 
 # Provisioning EC2s with cloudinit_config user-data and Terraform
+
 What is cloud init? [See: the Cloud init docs](https://cloudinit.readthedocs.io/en/latest/topics/tutorial.html)
+
+---
 
 ### For each file to be used for cloud_init, create a terraform templatefile
 This is a terraform data source, called a [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file). This will allow us to pass in variables from terraform.
