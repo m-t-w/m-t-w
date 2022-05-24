@@ -111,3 +111,4 @@ Info from [here](https://git.launchpad.net/cloud-init/tree/config/cloud.cfg.tmpl
 * [Terraform docs re: the cloud_config data source](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/cloudinit_config)
 * [A good blog post re: cloud init and terraform](https://sammeechward.com/cloud-init-and-terraform-with-aws/)
 * [Another blog post that was really useful in understanding this pattern](https://www.puppeteers.net/blog/multi-part-cloud-init-provisioning-with-terraform/)
+* TODO: checkout tedivm's [cloudinit module](https://github.com/tedivm/terraform-general-cloudinit)
